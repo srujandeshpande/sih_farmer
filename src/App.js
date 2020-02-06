@@ -86,12 +86,18 @@ App = {
       // Fetch the task data from the blockchain
       const task = await App.todoList.tasks(i)
       const taskId = task[0].toNumber()
-      const taskContent = task[1]
-      const taskCompleted = task[2]
+      const plotNum = task[1]
+      const owner = task[2]
+      const ownerAadhar = task[3]
+      const pincode = task[4]
+      const taskComplete = task[5]
 
       // Create the html for the task
       const $newTaskTemplate = $taskTemplate.clone()
-      $newTaskTemplate.find('.content').html(taskContent)
+      $newTaskTemplate.find('.c_plotNum').html(plotNum)
+      $newTaskTemplate.find('.c_owner').html(owner)
+      $newTaskTemplate.find('.c_ownerAadhar').html(ownerAadhar)
+      $newTaskTemplate.find('.c_pincode').html(pincode)
       $newTaskTemplate.find('input')
                       .prop('name', taskId)
                       .prop('checked', taskCompleted)
