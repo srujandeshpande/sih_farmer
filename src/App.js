@@ -101,7 +101,6 @@ App = {
       $newTaskTemplate.find('.c_pincode').html(t_pincode)
       $newTaskTemplate.find('.tempid').attr('id',taskId)
       $newTaskTemplate.find('.tempid')
-      $newTaskTemplate.find('.tempid')
                       .prop('name', taskId)
                       .on('click', App.modifyRefill)
       $newTaskTemplate.find('input')
@@ -131,17 +130,31 @@ App = {
 
     const task = await App.todoList.tasks(taskId)
 
-    const t_plotNum = (task[1]).text
-    const taskCompleted = task[2].value
+    const t_plotNum = task[1]
+    const taskCompleted = task[2]
     const t_owner = task[3]
     const t_ownerAadhar = task[4]
     const t_pincode = task[5]
 
     $('#index').val(taskId)
-    $('#plotNum').val(plotNum)
-    $('#owner').val(owner)
-    $('#ownerAadhar').val(ownerAadhar)
-    $('#pincode').val(pincode)
+    $('#plotNum').val(t_plotNum)
+    $('#owner').val(t_owner)
+    $('#ownerAadhar').val(t_ownerAadhar)
+    $('#pincode').val(t_pincode)
+
+    $('#modButton').attr('disabled',false)
+                    .on('click',App.modifyTask)
+  },
+
+  modifyTask: async () => {
+    App.setLoading(true)
+    const index = $('#index').val()
+    const plotNum = $('#plotNum').val()
+    const owner = $('#owner').val()
+    const ownerAadhar = $('#ownerAadhar').val()
+    const pincode = $('#pincode').val()
+    await App.todoList.modifyTask(index,plotNum,owner,ownerAadhar,pincode)
+    window.location.reload()
   },
 
   createTask: async () => {

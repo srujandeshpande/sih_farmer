@@ -37,12 +37,11 @@ contract TodoList {
     tasks[taskCount] = Task(taskCount, _plotNum, false, _owner, _ownerAadhar, _pincode);
     emit TaskCreated(taskCount, _plotNum, false, _owner, _ownerAadhar, _pincode);
   }
-/*
-  function modify(uint taskCount) public {
+
+  function modifyTask(uint taskCount, string memory _plotNum, string memory _owner, string memory _ownerAadhar, string memory _pincode) public {
     tasks[taskCount] = Task(taskCount, _plotNum, false, _owner, _ownerAadhar, _pincode);
     emit TaskCreated(taskCount, _plotNum, false, _owner, _ownerAadhar, _pincode);
   }
-*/
 
   function toggleCompleted(uint _id) public {
     Task memory _task = tasks[_id];

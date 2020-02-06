@@ -58,13 +58,14 @@
           </div>
           <div id="content">
             <form onSubmit="App.createTask(); return false;">
-              <input id="index" type="text" class="form-control"><br>
+              <input id="index" type="text" class="form-control" disabled><br>
               <input id="plotNum" type="text" class="form-control" placeholder="Plot Number" required><br>
               <input id="owner" type="text" class="form-control" placeholder="Owner Name" required><br>
               <input id="ownerAadhar" type="text" class="form-control" placeholder="Owner Aadhar" required><br>
               <input id="pincode" type="text" class="form-control" placeholder="Pincode" required><br>
               <input type="submit">
             </form>
+            <button disabled id="modButton">Modify</button>
             <ul id="taskList" class="list-unstyled">
               <div class="taskTemplate" class="checkbox" style="display: none">
                 <label>
