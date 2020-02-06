@@ -23,13 +23,13 @@ contract TodoList {
   );
 
   constructor() public {
-    createTask("Check out my app");
+    createTask("123","Ramesh K Suresh","1234567890","560006");
   }
-
-  function createTask(string memory _content) public {
+  
+  function createTask(string memory _plotNum, string memory _owner, string memory _ownerAadhar, string memory _pincode) public {
     taskCount ++;
-    tasks[taskCount] = Task(taskCount, _content, false);
-    emit TaskCreated(taskCount, _content, false);
+    tasks[taskCount] = Task(taskCount, _owner, false);
+    emit TaskCreated(taskCount, _owner, false);
   }
 
   function toggleCompleted(uint _id) public {

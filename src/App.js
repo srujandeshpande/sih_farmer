@@ -111,8 +111,11 @@ App = {
 
   createTask: async () => {
     App.setLoading(true)
-    const content = $('#newTask').val()
-    await App.todoList.createTask(content)
+    const plotNum = $('#plotNum').val()
+    const owner = $('#owner').val()
+    const ownerAadhar = $('#ownerAadhar').val()
+    const pincode = $('#pincode').val()
+    await App.todoList.createTask(plotNum,owner,ownerAadhar,pincode)
     window.location.reload()
   },
 
