@@ -94,10 +94,16 @@ App = {
 
       // Create the html for the task
       const $newTaskTemplate = $taskTemplate.clone()
+      $newTaskTemplate.find('.c_index').html(taskId)
       $newTaskTemplate.find('.c_plotNum').html(t_plotNum)
       $newTaskTemplate.find('.c_owner').html(t_owner)
       $newTaskTemplate.find('.c_ownerAadhar').html(t_ownerAadhar)
       $newTaskTemplate.find('.c_pincode').html(t_pincode)
+      $newTaskTemplate.find('.tempid').attr('id',taskId)
+      $newTaskTemplate.find('.tempid')
+      $newTaskTemplate.find('.tempid')
+                      .prop('name', taskId)
+                      .on('click', App.modifyRefill)
       $newTaskTemplate.find('input')
                       .prop('name', taskId)
                       .prop('checked', taskCompleted)
@@ -113,6 +119,29 @@ App = {
       // Show the task
       $newTaskTemplate.show()
     }
+  },
+
+  modifyRefill: async (e) => {
+    //App.setLoading(true)
+    const taskId = e.target.name
+    /*
+    const taskCount = await App.todoList.taskCount()
+    const $taskTemplate = $('.taskTemplate')
+    */
+
+    const task = await App.todoList.tasks(taskId)
+
+    const t_plotNum = (task[1]).text
+    const taskCompleted = task[2].value
+    const t_owner = task[3]
+    const t_ownerAadhar = task[4]
+    const t_pincode = task[5]
+
+    $('#index').val(taskId)
+    $('#plotNum').val(plotNum)
+    $('#owner').val(owner)
+    $('#ownerAadhar').val(ownerAadhar)
+    $('#pincode').val(pincode)
   },
 
   createTask: async () => {
