@@ -142,10 +142,10 @@ App = {
     $('#ownerAadhar').val(t_ownerAadhar)
     $('#pincode').val(t_pincode)
 
-    $('#modButton').attr('disabled',false)
-                    .on('click',App.modifyTask)
+    //$('#modButton').attr('disabled',false)
+    //                .on('click',App.modifyTask)
   },
-
+/*
   modifyTask: async () => {
     App.setLoading(true)
     const index = $('#index').val()
@@ -154,16 +154,24 @@ App = {
     const ownerAadhar = $('#ownerAadhar').val()
     const pincode = $('#pincode').val()
     await App.todoList.modifyTask(index,plotNum,owner,ownerAadhar,pincode)
+    $('#modButton').attr('disabled',true)
     window.location.reload()
   },
-
+*/
   createTask: async () => {
     App.setLoading(true)
+    const index = $('#index').val()
     const plotNum = $('#plotNum').val()
     const owner = $('#owner').val()
     const ownerAadhar = $('#ownerAadhar').val()
     const pincode = $('#pincode').val()
-    await App.todoList.createTask(plotNum,owner,ownerAadhar,pincode)
+    if(index) {
+      await App.todoList.modifyTask(index,plotNum,owner,ownerAadhar,pincode)
+      //$('#modButton').attr('disabled',true)
+    }
+    else {
+      await App.todoList.createTask(plotNum,owner,ownerAadhar,pincode)
+    }
     window.location.reload()
   },
 
