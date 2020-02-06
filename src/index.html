@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Dapp University | Todo List</title>
+    <title>Sav Blockchain Solutions</title>
 
     <!-- Bootstrap -->
     <link href="vendor/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -43,7 +43,7 @@
   </head>
   <body>
     <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
-      <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="http://www.dappuniversity.com/free-download" target="_blank">Dapp University | Todo List</a>
+      <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="http://www.dappuniversity.com/free-download" target="_blank">Sav Blockchain Solutions</a>
       <ul class="navbar-nav px-3">
         <li class="nav-item text-nowrap d-none d-sm-none d-sm-block">
           <small><a class="nav-link" href="#"><span id="account"></span></a></small>
@@ -59,14 +59,31 @@
           <div id="content">
             <form onSubmit="App.createTask(); return false;">
               <input id="index" type="text" class="form-control" disabled><br>
-              <input id="plotNum" type="text" class="form-control" placeholder="Plot Number" required><br>
+              <input id="plotId" type="text" class="form-control" placeholder="Plot ID"><br>
               <input id="owner" type="text" class="form-control" placeholder="Owner Name" required><br>
               <input id="ownerAadhar" type="text" class="form-control" placeholder="Owner Aadhar" required><br>
+              <input id="date" type="text" class="form-control" placeholder="Purchase Date" required><br>
+              <input id="landType" type="text" class="form-control" placeholder="Land Type" value="Agriculture"><br>
+              <input id="schemeName" type="text" class="form-control" placeholder="Scheme Name"><br>
+              <input id="totalAmount" type="text" class="form-control" placeholder="Total Amount"><br>
+              <input id="loanAmount" type="text" class="form-control" placeholder="Loan Amount"><br>
+              <input id="outstandingLoanAmount" type="text" class="form-control" placeholder="Outstanding Loan Amount"><br>
+              <input id="subsidyAmount" type="text" class="form-control" placeholder="Subsidy Amount"><br>
+              <input id="plotNum" type="text" class="form-control" placeholder="Plot Number" required><br>
+              <input id="syNum" type="text" class="form-control" placeholder="Serial Number" required><br>
+              <input id="village" type="text" class="form-control" placeholder="Village" required><br>
+              <input id="taluk" type="text" class="form-control" placeholder="Taluk" required><br>
+              <input id="district" type="text" class="form-control" placeholder="District" required><br>
+              <input id="state" type="text" class="form-control" placeholder="State" required><br>
               <input id="pincode" type="text" class="form-control" placeholder="Pincode" required><br>
+              <input id="nomDet1" type="text" class="form-control" placeholder="Nominee Details 1"><br>
+              <input id="nomDet2" type="text" class="form-control" placeholder="Nominee Details 2"><br>
               <input type="submit">
               <input type="reset"/>
 
             </form>
+
+
             <ul id="taskList" class="list-unstyled">
               <div class="taskTemplate" class="checkbox" style="display: none">
                 <label>

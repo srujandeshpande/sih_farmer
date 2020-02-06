@@ -161,10 +161,31 @@ App = {
   createTask: async () => {
     App.setLoading(true)
     const index = $('#index').val()
+
+    const plotId = $('#plotId').val()
+    const owner = $('#owner').val()
+    const ownerAadhar = $('#ownerAadhar').val()
+    const date = $('#date').val()
+    const landType = $('#landType').val()
+    const schemeName = $('#schemeName').val()
+    const totalAmount = $('#totalAmount').val()
+    const loanAmount = $('#loanAmount').val()
+    const outstandingLoanAmount = $('#outstandingLoanAmount').val()
+    const plotNum = $('#plotNum').val()
+    const syNum = $('#syNum').val()
+    const village = $('#village').val()
+    const taluk = $('#taluk').val()
+    const district = $('#district').val()
+    const state = $('#state').val()
+    const pincode = $('#pincode').val()
+    const nomDet1 = $('#nomDet1').val()
+    const nomDet2 = $('#nomDet2').val()
+/*
     const plotNum = $('#plotNum').val()
     const owner = $('#owner').val()
     const ownerAadhar = $('#ownerAadhar').val()
     const pincode = $('#pincode').val()
+*/
     if(index) {
       await App.todoList.modifyTask(index,plotNum,owner,ownerAadhar,pincode)
       //$('#modButton').attr('disabled',true)
