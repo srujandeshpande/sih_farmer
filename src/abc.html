@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./index.css" />
+  </head>
+  <body>
+    <nav>
+      <div class="nav-wrapper light-blue darken-2">
+        <a href="#" class="brand-logo center">Logo</a>
+      </div>
+    </nav>
+
+    <div class="center-align addbtn">
+      <a
+        id="jey"
+        class="btn-floating btn-large waves-effect waves-light light-blue darken-2"
+        ><i class="material-icons">add</i></a
+      >
+    </div>
+
+    <div class="row formlmao scale-transition scale-in" style="display:none">
+      <form class="col s12" onSubmit="App.createTask(); return false;">
+        <div class="row">
+          <div class="input-field col s6 formclr">
+            <input
+              id="first_name"
+              type="text"
+              class="validate content form-control"
+            />
+            <label for="first_name ">First Name</label>
+          </div>
+          <div class="input-field col s6 formclr">
+            <input id="last_name" type="text" class="validate form-control" />
+            <label for="last_name">Last Name</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12 formclr">
+            <input id="disabled" type="text" class="validate form-control" />
+            <label for="disabled">Disabled</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12 formclr">
+            <input
+              id="password"
+              type="password"
+              class="validate form-control"
+            />
+            <label for="password">Password</label>
+          </div>
+        </div>
+        <div class="row">
+          w
+          <div class="input-field col s12 formclr">
+            <input id="email" type="email" class="validate form-control" />
+            <label for="email">Email</label>
+          </div>
+        </div>
+        <div class="center">
+          <button type="submit" class="btn btn-large btn-floating">
+            <i class="material-icons">check</i>
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <ul id="taskList" class="list-unstyled">
+      <div class="taskTemplate" class="checkbox" style="display: none">
+        <label>
+          <input type="checkbox" />
+          <span class="content">Task content goes here...</span>
+        </label>
+      </div>
+    </ul>
+    <ul id="completedTaskList" class="list-unstyled"></ul>
+
+    <!-- Compiled and minified CSS -->
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="vendor/truffle-contract/dist/truffle-contract.js"></script>
+    <script src="app.js"></script>
+    <script src="./index.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  </body>
+</html>
