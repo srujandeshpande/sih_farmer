@@ -29,7 +29,7 @@ contract TodoList {
   );
 
   constructor() public {
-    createTask("123","Ramesh K Suresh","1234567890","560006");
+    //createTask("123","Ramesh K Suresh","1234567890","560006");
   }
 
   function createTask(string memory _plotNum, string memory _owner, string memory _ownerAadhar, string memory _pincode) public {

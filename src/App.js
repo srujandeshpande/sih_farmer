@@ -76,6 +76,31 @@ App = {
     App.setLoading(false)
   },
 
+  search: async () => {
+    //window.location.reload()
+    const taskCount = await App.todoList.taskCount()
+    const searchText = $('#search').val()
+    const $taskTemplate = $('.taskTemplate')
+    for (var i = 1; i <= taskCount; i++) {
+      const task = await App.todoList.tasks(i)
+      const taskId = task[0].toNumber()
+      const t_owner = task[3]
+
+      const $newTaskTemplate = $taskTemplate.clone()
+      $newTaskTemplate.find('.c_index').html("htmlgfd")
+      if (searchText === t_owner) {
+        $newTaskTemplate.find('.c_plotNum').html(t_owner)
+        $newTaskTemplate.find('.c_owner').html(searchText)
+        $('#searchList').append($newTaskTemplate)
+      }
+      else {
+
+      }
+    }
+    $newTaskTemplate.show()
+
+  },
+
   renderTasks: async () => {
     // Load the total task count from the blockchain
     const taskCount = await App.todoList.taskCount()
@@ -110,7 +135,8 @@ App = {
 
       // Put the task in the correct list
       if (taskCompleted) {
-        $('#completedTaskList').append($newTaskTemplate)
+        $('#taskList').append($newTaskTemplate)
+        //$('#completedTaskList').append($newTaskTemplate)
       } else {
         $('#taskList').append($newTaskTemplate)
       }
