@@ -1,87 +1,144 @@
-import React, { Component } from 'react'
-import Web3 from 'web3'
-import './App.css'
-import { TODO_LIST_ABI, TODO_LIST_ADDRESS } from './config'
-import TodoList from './TodoList'
+App = {
+  loading: false,
+  contracts: {},
 
-class App extends Component {
-  componentWillMount() {
-    this.loadBlockchainData()
-  }
+  load: async () => {
+    await App.loadWeb3()
+    await App.loadAccount()
+    await App.loadContract()
+    await App.render()
+  },
 
-  async loadBlockchainData() {
-    const web3 = new Web3(Web3.givenProvider || "http://localhost:8545")
-    const accounts = await web3.eth.getAccounts()
-    this.setState({ account: accounts[0] })
-    const todoList = new web3.eth.Contract(TODO_LIST_ABI, TODO_LIST_ADDRESS)
-    this.setState({ todoList })
-    const taskCount = await todoList.methods.taskCount().call()
-    this.setState({ taskCount })
+  // https://medium.com/metamask/https-medium-com-metamask-breaking-change-injecting-web3-7722797916a8
+  loadWeb3: async () => {
+    if (typeof web3 !== 'undefined') {
+      App.web3Provider = web3.currentProvider
+      web3 = new Web3(web3.currentProvider)
+    } else {
+      window.alert("Please connect to Metamask.")
+    }
+    // Modern dapp browsers...
+    if (window.ethereum) {
+      window.web3 = new Web3(ethereum)
+      try {
+        // Request account access if needed
+        await ethereum.enable()
+        // Acccounts now exposed
+        web3.eth.sendTransaction({/* ... */})
+      } catch (error) {
+        // User denied account access...
+      }
+    }
+    // Legacy dapp browsers...
+    else if (window.web3) {
+      App.web3Provider = web3.currentProvider
+      window.web3 = new Web3(web3.currentProvider)
+      // Acccounts always exposed
+      web3.eth.sendTransaction({/* ... */})
+    }
+    // Non-dapp browsers...
+    else {
+      console.log('Non-Ethereum browser detected. You should consider trying MetaMask!')
+    }
+  },
+
+  loadAccount: async () => {
+    // Set the current blockchain account
+    App.account = web3.eth.accounts[0]
+  },
+
+  loadContract: async () => {
+    // Create a JavaScript version of the smart contract
+    const todoList = await $.getJSON('TodoList.json')
+    App.contracts.TodoList = TruffleContract(todoList)
+    App.contracts.TodoList.setProvider(App.web3Provider)
+
+    // Hydrate the smart contract with values from the blockchain
+    App.todoList = await App.contracts.TodoList.deployed()
+  },
+
+  render: async () => {
+    // Prevent double render
+    if (App.loading) {
+      return
+    }
+
+    // Update app loading state
+    App.setLoading(true)
+
+    // Render Account
+    $('#account').html(App.account)
+
+    // Render Tasks
+    await App.renderTasks()
+
+    // Update loading state
+    App.setLoading(false)
+  },
+
+  renderTasks: async () => {
+    // Load the total task count from the blockchain
+    const taskCount = await App.todoList.taskCount()
+    const $taskTemplate = $('.taskTemplate')
+
+    // Render out each task with a new task template
     for (var i = 1; i <= taskCount; i++) {
-      const task = await todoList.methods.tasks(i).call()
-      this.setState({
-        tasks: [...this.state.tasks, task]
-      })
+      // Fetch the task data from the blockchain
+      const task = await App.todoList.tasks(i)
+      const taskId = task[0].toNumber()
+      const taskContent = task[1]
+      const taskCompleted = task[2]
+
+      // Create the html for the task
+      const $newTaskTemplate = $taskTemplate.clone()
+      $newTaskTemplate.find('.content').html(taskContent)
+      $newTaskTemplate.find('input')
+                      .prop('name', taskId)
+                      .prop('checked', taskCompleted)
+                      .on('click', App.toggleCompleted)
+
+      // Put the task in the correct list
+      if (taskCompleted) {
+        $('#completedTaskList').append($newTaskTemplate)
+      } else {
+        $('#taskList').append($newTaskTemplate)
+      }
+
+      // Show the task
+      $newTaskTemplate.show()
     }
-    this.setState({ loading: false })
-  }
+  },
 
-  constructor(props) {
-    super(props)
-    this.state = {
-      account: '',
-      taskCount: 0,
-      tasks: [],
-      loading: true
+  createTask: async () => {
+    App.setLoading(true)
+    const content = $('#newTask').val()
+    await App.todoList.createTask(content)
+    window.location.reload()
+  },
+
+  toggleCompleted: async (e) => {
+    App.setLoading(true)
+    const taskId = e.target.name
+    await App.todoList.toggleCompleted(taskId)
+    window.location.reload()
+  },
+
+  setLoading: (boolean) => {
+    App.loading = boolean
+    const loader = $('#loader')
+    const content = $('#content')
+    if (boolean) {
+      loader.show()
+      content.hide()
+    } else {
+      loader.hide()
+      content.show()
     }
-
-    this.createTask = this.createTask.bind(this)
-    this.toggleCompleted = this.toggleCompleted.bind(this)
-  }
-
-  createTask(content) {
-    this.setState({ loading: true })
-    this.state.todoList.methods.createTask(content).send({ from: this.state.account })
-    .once('receipt', (receipt) => {
-      this.setState({ loading: false })
-    })
-  }
-
-  toggleCompleted(taskId) {
-    this.setState({ loading: true })
-    this.state.todoList.methods.toggleCompleted(taskId).send({ from: this.state.account })
-    .once('receipt', (receipt) => {
-      this.setState({ loading: false })
-    })
-  }
-
-  render() {
-    return (
-      <div>
-        <nav className="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
-          <a className="navbar-brand col-sm-3 col-md-2 mr-0" href="http://www.dappuniversity.com/free-download" target="_blank">Dapp University | Todo List</a>
-          <ul className="navbar-nav px-3">
-            <li className="nav-item text-nowrap d-none d-sm-none d-sm-block">
-              <small><a className="nav-link" href="#"><span id="account"></span></a></small>
-            </li>
-          </ul>
-        </nav>
-        <div className="container-fluid">
-          <div className="row">
-            <main role="main" className="col-lg-12 d-flex justify-content-center">
-              { this.state.loading
-                ? <div id="loader" className="text-center"><p className="text-center">Loading...</p></div>
-                : <TodoList
-                  tasks={this.state.tasks}
-                  createTask={this.createTask}
-                  toggleCompleted={this.toggleCompleted} />
-              }
-            </main>
-          </div>
-        </div>
-      </div>
-    );
   }
 }
 
-export default App;
+$(() => {
+  $(window).load(() => {
+    App.load()
+  })
+})
