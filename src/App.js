@@ -115,10 +115,12 @@ App = {
                       .on('click', App.toggleCompleted)
 
       // Put the task in the correct list
-      if (sval === t_owner) {
+      for (var j = 1; j <= 7; j++) {
+        if (sval === task[j]) {
+      //if (sval === t_owner) {
         $('#searchList').append($newTaskTemplate2)
         //$('#completedTaskList').append($newTaskTemplate)
-      }
+      }}
 
       // Show the task
       $newTaskTemplate2.show()
