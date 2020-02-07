@@ -98,15 +98,15 @@ App = {
 
       // Create the html for the task
       const $newTaskTemplate2 = $taskTemplate2.clone()
-      $newTaskTemplate2.find('.c_index').html(taskId)
-      $newTaskTemplate2.find('.c_plotNum').html(t_plotNum)
-      $newTaskTemplate2.find('.c_owner').html(t_owner)
-      $newTaskTemplate2.find('.c_ownerAadhar').html(t_ownerAadhar)
-      $newTaskTemplate2.find('.c_pincode').html(t_pincode)
-      $newTaskTemplate2.find('.c_schemeName').html(t_schemeName)
-      $newTaskTemplate2.find('.c_address').html(t_address)
-      $newTaskTemplate2.find('.tempid').attr('id',taskId)
-      $newTaskTemplate2.find('.tempid')
+      $newTaskTemplate2.find('.d_index').html(taskId)
+      $newTaskTemplate2.find('.d_plotNum').html(t_plotNum)
+      $newTaskTemplate2.find('.d_owner').html(t_owner)
+      $newTaskTemplate2.find('.d_ownerAadhar').html(t_ownerAadhar)
+      $newTaskTemplate2.find('.d_pincode').html(t_pincode)
+      $newTaskTemplate2.find('.d_schemeName').html(t_schemeName)
+      $newTaskTemplate2.find('.d_address').html(t_address)
+      $newTaskTemplate2.find('.d_tempid').attr('id',taskId)
+      $newTaskTemplate2.find('.d_tempid')
                       .prop('name', taskId)
                       .on('click', App.modifyRefill)
       $newTaskTemplate2.find('input')
@@ -115,7 +115,7 @@ App = {
                       .on('click', App.toggleCompleted)
 
       // Put the task in the correct list
-      if (sval === c_owner) {
+      if (sval === t_owner) {
         $('#searchList').append($newTaskTemplate2)
         //$('#completedTaskList').append($newTaskTemplate)
       }
