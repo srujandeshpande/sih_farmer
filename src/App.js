@@ -227,11 +227,11 @@ App = {
     const pincode = $('#pincode').val()
 */
     if(index) {
-      await App.todoList.modifyTask(index,plotNum,owner,ownerAadhar,pincode)
+      await App.todoList.modifyTask(index, owner, ownerAadhar, date, landType, schemeName, totalAmount, loanAmount, outstandingLoanAmount, plotNum, syNum, village, taluk, district, state, pincode);
       //$('#modButton').attr('disabled',true)
     }
     else {
-      await App.todoList.createTask(plotNum,owner,ownerAadhar,pincode)
+      await App.todoList.createTask(owner, ownerAadhar, date, landType, schemeName, totalAmount, loanAmount, outstandingLoanAmount, plotNum, syNum, village, taluk, district, state, pincode);
     }
     window.location.reload()
   },

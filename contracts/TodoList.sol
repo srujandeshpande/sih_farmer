@@ -5,10 +5,21 @@ contract TodoList {
 
   struct Task {
     uint id;
-    string content;
     bool completed;
     string owner;
     string ownerAadhar;
+    string date;
+    string landType;
+    string schemeName;
+    string totalAmount;
+    string loanAmount;
+    string outstandingLoanAmount;
+    string plotNum;
+    string syNum;
+    string village;
+    string taluk;
+    string district;
+    string state;
     string pincode;
     //address emp;
   }
@@ -17,11 +28,23 @@ contract TodoList {
 
   event TaskCreated(
     uint id,
-    string content,
     bool completed,
     string owner,
     string ownerAadhar,
+    string date,
+    string landType,
+    string schemeName,
+    string totalAmount,
+    string loanAmount,
+    string outstandingLoanAmount,
+    string plotNum,
+    string syNum,
+    string village,
+    string taluk,
+    string district,
+    string state,
     string pincode
+    //address emp
   );
 
   event TaskCompleted(
@@ -33,15 +56,15 @@ contract TodoList {
     //createTask("123","Ramesh K Suresh","1234567890","560006");
   }
 
-  function createTask(string memory _plotNum, string memory _owner, string memory _ownerAadhar, string memory _pincode) public {
+  function createTask(string memory owner, string memory ownerAadhar, string memory date, string memory landType, string memory schemeName, string memory totalAmount, string memory loanAmount, string memory outstandingLoanAmount, string memory plotNum, string memory syNum, string memory village, string memory taluk, string memory district, string memory state, string memory pincode) public {
     taskCount ++;
-    tasks[taskCount] = Task(taskCount, _plotNum, false, _owner, _ownerAadhar, _pincode);
-    emit TaskCreated(taskCount, _plotNum, false, _owner, _ownerAadhar, _pincode);
+    tasks[taskCount] = Task(taskCount, false, owner, ownerAadhar, date, landType, schemeName, totalAmount, loanAmount, outstandingLoanAmount, plotNum, syNum, village, taluk, district, state, pincode);
+    emit TaskCreated(taskCount, false, owner, ownerAadhar, date, landType, schemeName, totalAmount, loanAmount, outstandingLoanAmount, plotNum, syNum, village, taluk, district, state, pincode);
   }
 
-  function modifyTask(uint taskCount, string memory _plotNum, string memory _owner, string memory _ownerAadhar, string memory _pincode) public {
-    tasks[taskCount] = Task(taskCount, _plotNum, false, _owner, _ownerAadhar, _pincode);
-    emit TaskCreated(taskCount, _plotNum, false, _owner, _ownerAadhar, _pincode);
+  function modifyTask(uint taskCount, string memory owner, string memory ownerAadhar, string memory date, string memory landType, string memory schemeName, string memory totalAmount, string memory loanAmount, string memory outstandingLoanAmount, string memory plotNum, string memory syNum, string memory village, string memory taluk, string memory district, string memory state, string memory pincode) public {
+    tasks[taskCount] = Task(taskCount, false, owner, ownerAadhar, date, landType, schemeName, totalAmount, loanAmount, outstandingLoanAmount, plotNum, syNum, village, taluk, district, state, pincode);
+    emit TaskCreated(taskCount, false, owner, ownerAadhar, date, landType, schemeName, totalAmount, loanAmount, outstandingLoanAmount, plotNum, syNum, village, taluk, district, state, pincode);
   }
 
   function toggleCompleted(uint _id) public {
