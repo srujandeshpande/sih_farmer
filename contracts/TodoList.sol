@@ -2,6 +2,7 @@ pragma solidity ^0.5.0;
 
 contract TodoList {
   uint public taskCount = 0;
+  address public emp = msg.sender;
 
   struct Task {
     uint id;
@@ -11,7 +12,7 @@ contract TodoList {
     string ownerAadhar;
     string pincode;
     string schemeName;
-    //address emp;
+    address emp;
   }
 
   mapping(uint => Task) public tasks;
@@ -23,7 +24,8 @@ contract TodoList {
     string owner,
     string ownerAadhar,
     string pincode,
-    string schemeName
+    string schemeName,
+    address emp
   );
 
   event TaskCompleted(
@@ -37,13 +39,16 @@ contract TodoList {
 
   function createTask(string memory _plotNum, string memory _owner, string memory _ownerAadhar, string memory _pincode, string memory _schemeName) public {
     taskCount ++;
-    tasks[taskCount] = Task(taskCount, _plotNum, false, _owner, _ownerAadhar, _pincode, _schemeName);
-    emit TaskCreated(taskCount, _plotNum, false, _owner, _ownerAadhar, _pincode, _schemeName);
+    emp = msg.sender;
+    //address emp = msg.sender;
+    tasks[taskCount] = Task(taskCount, _plotNum, false, _owner, _ownerAadhar, _pincode, _schemeName,emp);
+    emit TaskCreated(taskCount, _plotNum, false, _owner, _ownerAadhar, _pincode, _schemeName,emp);
   }
 
   function modifyTask(uint taskCount, string memory _plotNum, string memory _owner, string memory _ownerAadhar, string memory _pincode, string memory _schemeName) public {
-    tasks[taskCount] = Task(taskCount, _plotNum, false, _owner, _ownerAadhar, _pincode, _schemeName);
-    emit TaskCreated(taskCount, _plotNum, false, _owner, _ownerAadhar, _pincode, _schemeName);
+    emp = msg.sender;
+    tasks[taskCount] = Task(taskCount, _plotNum, false, _owner, _ownerAadhar, _pincode, _schemeName,emp);
+    emit TaskCreated(taskCount, _plotNum, false, _owner, _ownerAadhar, _pincode, _schemeName,emp);
   }
 
   function toggleCompleted(uint _id) public {

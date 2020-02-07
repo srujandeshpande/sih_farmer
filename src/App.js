@@ -27,6 +27,7 @@ App = {
         web3.eth.sendTransaction({/* ... */})
       } catch (error) {
         // User denied account access...
+        //window.location.reload()
       }
     }
     // Legacy dapp browsers...
@@ -78,8 +79,9 @@ App = {
 
   search: async () => {
     // Load the total task count from the blockchain
+    const sval = $('#search').val()
     const taskCount = await App.todoList.taskCount()
-    const $taskTemplate = $('.taskTemplate')
+    const $taskTemplate2 = $('.taskTemplate2')
 
     // Render out each task with a new task template
     for (var i = 1; i <= taskCount; i++) {
@@ -91,27 +93,35 @@ App = {
       const t_owner = task[3]
       const t_ownerAadhar = task[4]
       const t_pincode = task[5]
+      const t_schemeName = task[6]
+      const t_address = task[7]
 
       // Create the html for the task
-      const $newTaskTemplate = $taskTemplate.clone()
-      $newTaskTemplate.find('.c_index').html(taskId)
-      $newTaskTemplate.find('.c_plotNum').html(t_plotNum)
-      $newTaskTemplate.find('.c_owner').html(t_owner)
-      $newTaskTemplate.find('.c_ownerAadhar').html(t_ownerAadhar)
-      $newTaskTemplate.find('.c_pincode').html(t_pincode)
-      $newTaskTemplate.find('.tempid').attr('id',taskId)
-      $newTaskTemplate.find('.tempid')
+      const $newTaskTemplate2 = $taskTemplate2.clone()
+      $newTaskTemplate2.find('.c_index').html(taskId)
+      $newTaskTemplate2.find('.c_plotNum').html(t_plotNum)
+      $newTaskTemplate2.find('.c_owner').html(t_owner)
+      $newTaskTemplate2.find('.c_ownerAadhar').html(t_ownerAadhar)
+      $newTaskTemplate2.find('.c_pincode').html(t_pincode)
+      $newTaskTemplate2.find('.c_schemeName').html(t_schemeName)
+      $newTaskTemplate2.find('.c_address').html(t_address)
+      $newTaskTemplate2.find('.tempid').attr('id',taskId)
+      $newTaskTemplate2.find('.tempid')
                       .prop('name', taskId)
                       .on('click', App.modifyRefill)
-      $newTaskTemplate.find('input')
+      $newTaskTemplate2.find('input')
                       .prop('name', taskId)
                       .prop('checked', taskCompleted)
                       .on('click', App.toggleCompleted)
 
-      $('#searchList').append($newTaskTemplate)
+      // Put the task in the correct list
+      if (sval === c_owner) {
+        $('#searchList').append($newTaskTemplate2)
+        //$('#completedTaskList').append($newTaskTemplate)
+      }
 
       // Show the task
-      $newTaskTemplate.show()
+      $newTaskTemplate2.show()
     }
   },
 
@@ -131,6 +141,7 @@ App = {
       const t_ownerAadhar = task[4]
       const t_pincode = task[5]
       const t_schemeName = task[6]
+      const t_address = task[7]
 
       // Create the html for the task
       const $newTaskTemplate = $taskTemplate.clone()
@@ -140,6 +151,7 @@ App = {
       $newTaskTemplate.find('.c_ownerAadhar').html(t_ownerAadhar)
       $newTaskTemplate.find('.c_pincode').html(t_pincode)
       $newTaskTemplate.find('.c_schemeName').html(t_schemeName)
+      $newTaskTemplate.find('.c_address').html(t_address)
       $newTaskTemplate.find('.tempid').attr('id',taskId)
       $newTaskTemplate.find('.tempid')
                       .prop('name', taskId)
