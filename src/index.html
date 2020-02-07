@@ -19,6 +19,10 @@
     <![endif]-->
 
     <style>
+      #map {
+        height: 10%;
+        width: 100%;
+      }
       main {
         margin-top: 60px;
       }
@@ -71,6 +75,11 @@
           </div>
           <div id="content">
             <form onSubmit="App.createTask(); return false;">
+              <div class="input-field col s12 formclr">
+               <input id="index" type="text" class="validate form-control" style="color:white" disabled>
+               <label for="index"></label>
+             </div>
+             <br>
               <div class="input-field col s12 formclr">
                <input id="plotId" type="text" class="validate form-control" style="color:white" >
                <label for="plotId">PLOT ID</label>
@@ -199,6 +208,16 @@
             </form>
 
 
+            <script>
+              var map;
+              function initMap() {
+                map = new google.maps.Map(document.getElementById('map'), {
+                  center: {lat: -34.397, lng: 150.644},
+                  zoom: 8
+                });
+              }
+            </script>
+            <div id="map"></div>
 
             <ul id="taskList" class="list-unstyled">
               <div class="taskTemplate" class="checkbox" style="display: none">
@@ -226,6 +245,10 @@
         </main>
       </div>
     </div>
+
+    <script async defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD37IJAhbveIUaaZzYyqVr0Y2ow1CrWkvU&callback=initMap">
+    </script>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
