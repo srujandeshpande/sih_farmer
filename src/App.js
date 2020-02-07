@@ -130,6 +130,7 @@ App = {
       const t_owner = task[3]
       const t_ownerAadhar = task[4]
       const t_pincode = task[5]
+      const t_schemeName = task[6]
 
       // Create the html for the task
       const $newTaskTemplate = $taskTemplate.clone()
@@ -138,6 +139,7 @@ App = {
       $newTaskTemplate.find('.c_owner').html(t_owner)
       $newTaskTemplate.find('.c_ownerAadhar').html(t_ownerAadhar)
       $newTaskTemplate.find('.c_pincode').html(t_pincode)
+      $newTaskTemplate.find('.c_schemeName').html(t_schemeName)
       $newTaskTemplate.find('.tempid').attr('id',taskId)
       $newTaskTemplate.find('.tempid')
                       .prop('name', taskId)
@@ -175,12 +177,14 @@ App = {
     const t_owner = task[3]
     const t_ownerAadhar = task[4]
     const t_pincode = task[5]
+    const t_schemeName = task[6]
 
     $('#index').val(taskId)
     $('#plotNum').val(t_plotNum)
     $('#owner').val(t_owner)
     $('#ownerAadhar').val(t_ownerAadhar)
     $('#pincode').val(t_pincode)
+    $('#schemeName').val(t_schemeName)
 
     //$('#modButton').attr('disabled',false)
     //                .on('click',App.modifyTask)
@@ -227,11 +231,11 @@ App = {
     const pincode = $('#pincode').val()
 */
     if(index) {
-      await App.todoList.modifyTask(index,plotNum,owner,ownerAadhar,pincode)
+      await App.todoList.modifyTask(index,plotNum,owner,village,pincode,schemeName)
       //$('#modButton').attr('disabled',true)
     }
     else {
-      await App.todoList.createTask(plotNum,owner,ownerAadhar,pincode)
+      await App.todoList.createTask(plotNum,owner,village,pincode,schemeName)
     }
     window.location.reload()
   },

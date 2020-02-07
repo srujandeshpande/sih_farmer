@@ -10,6 +10,7 @@ contract TodoList {
     string owner;
     string ownerAadhar;
     string pincode;
+    string schemeName;
     //address emp;
   }
 
@@ -21,7 +22,8 @@ contract TodoList {
     bool completed,
     string owner,
     string ownerAadhar,
-    string pincode
+    string pincode,
+    string schemeName
   );
 
   event TaskCompleted(
@@ -33,15 +35,15 @@ contract TodoList {
     //createTask("123","Ramesh K Suresh","1234567890","560006");
   }
 
-  function createTask(string memory _plotNum, string memory _owner, string memory _ownerAadhar, string memory _pincode) public {
+  function createTask(string memory _plotNum, string memory _owner, string memory _ownerAadhar, string memory _pincode, string memory _schemeName) public {
     taskCount ++;
-    tasks[taskCount] = Task(taskCount, _plotNum, false, _owner, _ownerAadhar, _pincode);
-    emit TaskCreated(taskCount, _plotNum, false, _owner, _ownerAadhar, _pincode);
+    tasks[taskCount] = Task(taskCount, _plotNum, false, _owner, _ownerAadhar, _pincode, _schemeName);
+    emit TaskCreated(taskCount, _plotNum, false, _owner, _ownerAadhar, _pincode, _schemeName);
   }
 
-  function modifyTask(uint taskCount, string memory _plotNum, string memory _owner, string memory _ownerAadhar, string memory _pincode) public {
-    tasks[taskCount] = Task(taskCount, _plotNum, false, _owner, _ownerAadhar, _pincode);
-    emit TaskCreated(taskCount, _plotNum, false, _owner, _ownerAadhar, _pincode);
+  function modifyTask(uint taskCount, string memory _plotNum, string memory _owner, string memory _ownerAadhar, string memory _pincode, string memory _schemeName) public {
+    tasks[taskCount] = Task(taskCount, _plotNum, false, _owner, _ownerAadhar, _pincode, _schemeName);
+    emit TaskCreated(taskCount, _plotNum, false, _owner, _ownerAadhar, _pincode, _schemeName);
   }
 
   function toggleCompleted(uint _id) public {
