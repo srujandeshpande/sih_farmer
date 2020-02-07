@@ -77,28 +77,42 @@ App = {
   },
 
   search: async () => {
-    //window.location.reload()
+    // Load the total task count from the blockchain
     const taskCount = await App.todoList.taskCount()
-    const searchText = $('#search').val()
     const $taskTemplate = $('.taskTemplate')
+
+    // Render out each task with a new task template
     for (var i = 1; i <= taskCount; i++) {
+      // Fetch the task data from the blockchain
       const task = await App.todoList.tasks(i)
       const taskId = task[0].toNumber()
+      const t_plotNum = task[1]
+      const taskCompleted = task[2]
       const t_owner = task[3]
+      const t_ownerAadhar = task[4]
+      const t_pincode = task[5]
 
+      // Create the html for the task
       const $newTaskTemplate = $taskTemplate.clone()
-      $newTaskTemplate.find('.c_index').html("htmlgfd")
-      if (searchText === t_owner) {
-        $newTaskTemplate.find('.c_plotNum').html(t_owner)
-        $newTaskTemplate.find('.c_owner').html(searchText)
-        $('#searchList').append($newTaskTemplate)
-      }
-      else {
+      $newTaskTemplate.find('.c_index').html(taskId)
+      $newTaskTemplate.find('.c_plotNum').html(t_plotNum)
+      $newTaskTemplate.find('.c_owner').html(t_owner)
+      $newTaskTemplate.find('.c_ownerAadhar').html(t_ownerAadhar)
+      $newTaskTemplate.find('.c_pincode').html(t_pincode)
+      $newTaskTemplate.find('.tempid').attr('id',taskId)
+      $newTaskTemplate.find('.tempid')
+                      .prop('name', taskId)
+                      .on('click', App.modifyRefill)
+      $newTaskTemplate.find('input')
+                      .prop('name', taskId)
+                      .prop('checked', taskCompleted)
+                      .on('click', App.toggleCompleted)
 
-      }
+      $('#searchList').append($newTaskTemplate)
+
+      // Show the task
+      $newTaskTemplate.show()
     }
-    $newTaskTemplate.show()
-
   },
 
   renderTasks: async () => {

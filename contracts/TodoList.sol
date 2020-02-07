@@ -10,6 +10,7 @@ contract TodoList {
     string owner;
     string ownerAadhar;
     string pincode;
+    //address emp;
   }
 
   mapping(uint => Task) public tasks;
