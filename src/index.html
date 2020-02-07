@@ -9,7 +9,8 @@
 
     <!-- Bootstrap -->
     <link href="vendor/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -40,16 +41,28 @@
         text-decoration: line-through;
       }
     </style>
+    <link
+   rel="stylesheet"
+   href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+ />
+ <link
+   href="https://fonts.googleapis.com/icon?family=Material+Icons"
+   rel="stylesheet"
+ />
+ <link rel="stylesheet" href="./index.css" />
   </head>
   <body>
-    <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
-      <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="http://www.dappuniversity.com/free-download" target="_blank">Sav Blockchain Solutions</a>
-      <ul class="navbar-nav px-3">
-        <li class="nav-item text-nowrap d-none d-sm-none d-sm-block">
-          <small><a class="nav-link" href="#"><span id="account"></span></a></small>
-        </li>
-      </ul>
+    <nav>
+      <div class="nav-wrapper light-blue darken-2">
+        <a href="#" class="brand-logo center">भारतीय भूमि नवाचार</a>
+      </div>
     </nav>
+    <div class="container-fluid">
+
+
+
+          <div class="titleform text-center">
+          <p class="text-center" style="text-align:center">Land registration</p></div>
     <div class="container-fluid">
       <div class="row">
         <main role="main" class="col-lg-12 d-flex justify-content-center">
@@ -58,28 +71,125 @@
           </div>
           <div id="content">
             <form onSubmit="App.createTask(); return false;">
-              <input id="index" type="text" class="form-control" disabled><br>
-              <input id="plotId" type="text" class="form-control" placeholder="Plot ID"><br>
-              <input id="owner" type="text" class="form-control" placeholder="Owner Name" required><br>
-              <input id="ownerAadhar" type="text" class="form-control" placeholder="Owner Aadhar" required><br>
-              <input id="date" type="text" class="form-control" placeholder="Purchase Date" required><br>
-              <input id="landType" type="text" class="form-control" placeholder="Land Type" value="Agriculture"><br>
-              <input id="schemeName" type="text" class="form-control" placeholder="Scheme Name"><br>
-              <input id="totalAmount" type="text" class="form-control" placeholder="Total Amount"><br>
-              <input id="loanAmount" type="text" class="form-control" placeholder="Loan Amount"><br>
-              <input id="outstandingLoanAmount" type="text" class="form-control" placeholder="Outstanding Loan Amount"><br>
-              <input id="subsidyAmount" type="text" class="form-control" placeholder="Subsidy Amount"><br>
-              <input id="plotNum" type="text" class="form-control" placeholder="Plot Number" required><br>
-              <input id="syNum" type="text" class="form-control" placeholder="Serial Number" required><br>
-              <input id="village" type="text" class="form-control" placeholder="Village" required><br>
-              <input id="taluk" type="text" class="form-control" placeholder="Taluk" required><br>
-              <input id="district" type="text" class="form-control" placeholder="District" required><br>
-              <input id="state" type="text" class="form-control" placeholder="State" required><br>
-              <input id="pincode" type="text" class="form-control" placeholder="Pincode" required><br>
-              <input id="nomDet1" type="text" class="form-control" placeholder="Nominee Details 1"><br>
-              <input id="nomDet2" type="text" class="form-control" placeholder="Nominee Details 2"><br>
-              <input type="submit">
-              <input type="reset"/>
+              <div class="input-field col s12 formclr">
+               <input id="plotId" type="text" class="validate form-control" style="color:white" >
+               <label for="plotId">PLOT ID</label>
+             </div>
+             <br>
+             <div class="input-field col s12 formclr">
+               <input id="owner" type="text" class="validate form-control" style="color:white" required>
+               <label for="owner">OWNER NAME</label>
+             </div>
+             <br>
+             <div class="input-field col s12 formclr">
+               <input style="color:white"  id="ownerAadhar" type="text" class="form-control"  required>
+               <label for="ownerAadhar">OWNER AADHAR</label>
+             </div>
+             <br>
+             <div class="input-field col s12 formclr">
+               <input style="color:white"  id="date" type="text" class="form-control"  required>
+               <label for="date">DATE</label>
+             </div>
+             <div id="landType1">
+               <label for="landType1" style="text-align: left;font-size:15px;padding:2px;">LAND TYPE</label>
+             </div>
+             <div class="input-field col s12 formclr">
+               <input style="color:white"  id="landType" list="browsers" class="form-control"  required>
+
+               <datalist id="browsers">
+                 <option id="landType" value="AGRICULTURE">
+                   AGRICULTURE
+                 </option>
+                 <option id="landType" value="COMMERCIAL">
+                   COMMERCIAL
+                 </option>
+                 <option id="landType" value="RESEDENTIAL">
+                   RESIDENTIAL
+                 </option>
+
+               </datalist>
+
+             </div>
+
+             <br>
+             <div class="input-field col s12 formclr">
+               <input style="color:white"  id="schemeName" type="text" class="form-control" >
+               <label for="schemeName">SCHEME NAME </label>
+             </div>
+             <br>
+             <div class="input-field col s12 formclr">
+               <input style="color:white" id="totalAmount" type="text" class="form-control" >
+               <label for="totalAmount">TOTAL AMOUNT </label>
+             </div>
+             <br>
+             <div class="input-field col s12 formclr">
+               <input style="color:white"  id="loanAmount" type="text" class="form-control" >
+               <label for="loanAmount">LOAN AMOUNT </label>
+             </div>
+             <br>
+             <div class="input-field col s12 formclr">
+               <input style="color:white"  id="outstandingLoanAmount" type="text" class="form-control" >
+               <label for="outstandingLoanAmount">OUTSTANDING LOAN AMOUNT </label>
+             </div>
+             <br>
+             <div class="input-field col s12 formclr">
+               <input style="color:white"  id="subsidyAmount" type="text" class="form-control" >
+               <label for="subsidyAmount">SUBSIDY AMOUNT </label>
+             </div>
+            <br>
+            <div style="color:white" class="input-field col s12 formclr">
+             <input id="plotNum" type="text" class="form-control"  required>
+
+             <label for="plotNum">PLOT NUMBER </label>
+           </div>
+           <br>
+           <div class="input-field col s12 formclr">
+             <input style="color:white"  id="syNum" type="text" class="form-control"  required>
+
+             <label for="syNum"> SERIAL NUMBER</label>
+           </div>
+            <br>
+            <div class="input-field col s12 formclr">
+             <input style="color:white" id="village" type="text" class="form-control"  required>
+
+             <label for="village"> VILLAGE</label>
+           </div>
+             <br>
+             <div class="input-field col s12 formclr">
+               <input style="color:white"  id="taluk" type="text" class="form-control" required>
+
+               <label for="taluk"> TALUK</label>
+             </div>
+            <br>
+            <div class="input-field col s12 formclr">
+             <input style="color:white"  id="district" type="text" class="form-control" required>
+
+
+             <label for="district">DISTRICT </label>
+           </div><br>
+           <div class="input-field col s12 formclr">
+             <input style="color:white"  id="state" type="text" class="form-control" required>
+
+             <label for="state"> STATE</label>
+           </div>
+             <br>
+             <div class="input-field col s12 formclr">
+               <input style="color:white"  id="pincode" type="text" class="form-control"required>
+
+               <label for="pincode">PINCODE </label>
+             </div>
+            <br>
+            <div class="input-field col s12 formclr">
+             <input style="color:white"  id="nomDet1" type="text" class="form-control" >
+             <label for="nomDet1"> NOMINEE 1 DETAILS</label>
+           </div>
+           <br>
+           <div class="input-field col s12 formclr">
+             <input style="color:white"  id="nomDet2" type="text" class="form-control" >
+             <label for="nomDet2"> NOMINEE 2 DETAILS</label>
+           </div><br>
+             <input type="submit">
+             <input type="reset"/>
 
             </form>
             <!--form onsubmit="App.search(); return false;"-->
@@ -123,5 +233,15 @@
     <script src="vendor/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="vendor/truffle-contract/dist/truffle-contract.js"></script>
     <script src="app.js"></script>
+
+
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+   <!-- Include all compiled plugins (below), or include individual files as needed -->
+   <script src="vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+   <script src="vendor/truffle-contract/dist/truffle-contract.js"></script>
+   <script src="app.js"></script>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js">
+</script>
   </body>
 </html>
