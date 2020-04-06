@@ -1,0 +1,80 @@
+<html>
+    <head>
+        <style>
+            body{
+                background-color: #b39ddb;
+            }
+            body {
+                display: flex;
+                min-height: 100vh;
+                flex-direction: column;
+            }
+            main {
+                flex: 1 0 auto;
+            }
+            
+        </style>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+        <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    </head>
+    <body>
+        <nav>
+            <div class="nav-wrapper light-blue darken-2">
+              <a href="#" class="brand-logo center">भारतीय भूमि नवाचार</a>
+            </div>
+          </nav>
+        
+          <div class="container">
+            <div class="row">
+            <div class="section"></div>
+           <main>
+            <center>
+             <div class="container">
+                <div  class="z-depth-3 y-depth-3 x-depth-3 grey green-text lighten-4 row" style="display: inline-block; padding: 32px 48px 0px 48px; border: 1px; margin-top: 50px;">
+                <div class="section"></div>
+                ADMIN LOGIN
+        <div class="section"></div>
+            
+              <div class="section"><i class="mdi-alert-error red-text"></i></div>
+              
+          
+                    <div class='row'>
+                      <div class='input-field col s12'>
+                        <input class='validate' type="text" name='username' id='email' required />
+                        <label for='email'>Username</label>
+                      </div>
+                    </div>
+                    <div class='row'>
+                      <div class='input-field col m12'>
+                        <input class='validate' type='password' name='password' id='password' required />
+                        <label for='password'>Password</label>
+                      </div>
+                      <label style='float: right;'>
+                      <a><b style="color: #F5F5F5;">Forgot Password?</b></a>
+                      </label>
+                    </div>
+                    <br/>
+                    <center>
+                      <div class='row' id='loginbtn'>
+                        <a class="waves-effect waves-light btn">Login</a>
+                      </div>
+                    </center>
+             
+                </div>
+               </div>
+              </center>
+              </main>
+            <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.1/jquery.min.js"></script>
+            <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+            <script>
+                var x = document.getElementById('loginbtn');
+                x.onclick =() =>{
+                    window.location = "./select.html";
+                }
+            </script>
+            </div>
+        </div>
+
+    
